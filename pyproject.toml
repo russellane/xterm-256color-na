@@ -1,0 +1,13 @@
+[project]
+name = "xterm-256color-na"
+version = "1.0.0"
+description = "terminfo for xterm-256color/no-alt-screen/mouse-motion."
+authors = [
+    {name = "Russel Lane", email = "russel@rlane.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+keywords = ["terminfo", "xterm-256color", "no-alt-screen", "mouse-motion"]
+
+[project.urls]
+Homepage = "https://github.com/russellane/xterm-256color-na"

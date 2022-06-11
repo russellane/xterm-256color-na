@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#-------------------------------------------------------------------------------
+
+XTERM=xterm-256color
+XTERM_NA=$XTERM-na
+XTERM_NA_1002=$XTERM_NA-1002
+XTERM_NA_1003=$XTERM_NA-1003
+HEADER="# Created by $0 on `date`"
+
+#-------------------------------------------------------------------------------
+
+cat <<EOF >.$XTERM_NA
+$HEADER
+$XTERM_NA|color; no alternate screen,
+	smcup@, rmcup@,
+	use=$XTERM,
+EOF
+tic .$XTERM_NA
+
+#-------------------------------------------------------------------------------
+
+cat <<EOF >.$XTERM_NA_1002
+$HEADER
+$XTERM_NA_1002|color; no alternate screen; pressed mouse motions,
+	XM=\E[?1002%?%p1%{1}%=%th%el%;,
+	use=$XTERM_NA,
+EOF
+tic -x .$XTERM_NA_1002
+
+#-------------------------------------------------------------------------------
+
+cat <<EOF >.$XTERM_NA_1003
+$HEADER
+$XTERM_NA_1003|color; no alternate screen; all mouse motions,
+	XM=\E[?1003%?%p1%{1}%=%th%el%;,
+	use=$XTERM_NA,
+EOF
+tic -x .$XTERM_NA_1003
+
+#-------------------------------------------------------------------------------
+
+echo These compiled database entries have been installed:
+find ~/.terminfo/x -type f -ls
+
+echo These terminfo source files may be removed:
+ls -l .$XTERM_NA .$XTERM_NA_1002 .$XTERM_NA_1003
